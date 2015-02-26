@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mx.edu.um.sima.model;
+package mx.edu.um.sma.model;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;

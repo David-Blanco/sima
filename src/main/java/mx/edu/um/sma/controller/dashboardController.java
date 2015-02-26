@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mx.edu.um.sima.controller;
+package mx.edu.um.sma.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

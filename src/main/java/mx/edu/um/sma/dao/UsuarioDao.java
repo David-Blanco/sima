@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mx.edu.um.sima.dao;
+package mx.edu.um.sma.dao;
 
 import java.util.List;
-import mx.edu.um.sima.model.Usuario;
+import mx.edu.um.sma.model.Usuario;
 
 
 /**
