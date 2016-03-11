@@ -11,27 +11,34 @@
     http://www.springframework.org/schema/security
     http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 
-    
     <http auto-config="true" use-expressions="true">
         
         <intercept-url pattern="/login" access="permitAll" />
         <intercept-url pattern="/logout" access="permitAll"/>
         <intercept-url pattern="/loginfailed" access="permitAll"/>
        
-        <intercept-url pattern="/" access="hasRole('ROLE_USUARIO')"/>
-        <intercept-url pattern="/index" access="hasRole('ROLE_USUARIO')"/>
-        
-        <form-login login-page="/login" default-target-url="/" authentication-failure-url="/loginfailed" />
+        <intercept-url pattern="/" access="hasAnyRole('ROLE_USUARIO', 'ROLE_SUPER')"/>
+        <intercept-url pattern="/usuarios/**" access="hasAnyRole('ROLE_USUARIO_ADMIN', 'ROLE_SUPER')"/>
+                
+        <form-login 
+            login-page="/login" 
+            default-target-url="/" 
+            authentication-failure-url="/" 
+            authentication-success-handler-ref="mySuccessHandler" 
+            authentication-failure-handler-ref="myFailureHandler"
+        />
         <logout logout-url="/logout" logout-success-url="/" invalidate-session="true" />
         
     </http>
     
+    <beans:bean id="mySuccessHandler" class="org.sshlc.util.AuthenticationSuccessHandler" />
+    <beans:bean id="myFailureHandler" class="org.sshlc.util.AuthenticationFailureHandler" />
     
-    <authentication-manager>
+    <authentication-manager alias="authenticationManager">
         <authentication-provider>
             <jdbc-user-service data-source-ref="dataSource"
                                users-by-username-query="select usuario, password, true from usuarios where usuario = ?"
-                               authorities-by-username-query="select u.usuario, r.role from usuarios u, usuarios_roles r where u.id = r.usuario_id and u.usuario = ?"  />
+                               authorities-by-username-query="select u.usuario, r.rol from usuarios u, usuarios_roles r where u.usuario_id = r.usuario_id and u.usuario = ?"  />
         </authentication-provider>
     </authentication-manager>
     

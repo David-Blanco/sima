@@ -12,7 +12,7 @@
        ">
     
     <!-- SCAN ONLY THE CONTROLLERS -->
-    <context:component-scan base-package="mx.edu.um.sma.controller" >
+    <context:component-scan base-package="org.sshlc.**.controller" >
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
     </context:component-scan>    
     

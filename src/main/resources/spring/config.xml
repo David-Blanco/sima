@@ -10,9 +10,8 @@
        ">
            
     <context:property-placeholder location="classpath*:db/db.properties,file:${user.home}/db*.properties"/>
-    <!--<context:property-placeholder location="classpath:db/db.properties" system-properties-mode="OVERRIDE" />-->
     
-    <context:component-scan base-package="mx.edu.um.sma" >
+    <context:component-scan base-package="org.sshlc" >
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
     </context:component-scan>
     
@@ -27,7 +26,7 @@
     
     <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
-        <property name="packagesToScan" value="mx.edu.um.sma.model" />
+        <property name="packagesToScan" value="org.sshlc.**.model" />
         <property name="hibernateProperties">
             <props>
                 <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
